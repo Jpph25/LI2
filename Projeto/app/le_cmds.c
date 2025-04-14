@@ -18,6 +18,7 @@ void pTab(TAB *jogo) {
        }
        putchar('\n');
   }
+  putchar('\n');
 }
 
 void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo) {

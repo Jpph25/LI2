@@ -1,3 +1,5 @@
+#include "dicas.h"
+
 /*
 Implementação dos comandos a e A 
 */

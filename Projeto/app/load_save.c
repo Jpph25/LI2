@@ -43,7 +43,10 @@ void load(char *arg, TAB *jogo) {
      strcat(dir, arg);
      
      FILE *file = fopen(dir, "r"); 
-     assert(file != NULL);
-     
-     leJogo(jogo, file); 
+     if (file == NULL) {
+         printf("ERRO: Ficheiro %s não encontrado.", arg);
+     } else {
+       leJogo(jogo, file);
+       fclose(file); 
+     } 
 }

@@ -8,5 +8,13 @@ l jogo, g jogo, b <coordenadas>, r <coordenadas>, d, s, v, a, A e R
 */
 
 void pTab(TAB *jogo); 
+/*
+Desenha o tabuleiro que está a ser jogado.
+*/
 
 void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo);
+/*
+Lê os comandos usados pelo usuario:
+  - l, dá load ao jogo de um dado ficheiro;
+  - s, sai do jogo;
+*/

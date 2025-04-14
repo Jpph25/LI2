@@ -1,3 +1,5 @@
+#include "solve.h" 
+
 /*
 Implementação dos comando R 
 */

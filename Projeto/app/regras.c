@@ -1,3 +1,5 @@
+#include "regras.h"
+
 /*
 Implementação do comando v
 */
