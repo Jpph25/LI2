@@ -42,6 +42,14 @@ Execute os testes usando o comando:
 
 Os testes são executados no terminal, com relatórios indicando os testes bem-sucedidos e eventuais falhas.
 
+## Limpeza 
+
+Para limpra todos os arquivos temporarios e executaveis use o comado: 
+
+```bash
+make clean
+```
+
 ## Estrutura do Projeto
 
 ```
@@ -73,12 +81,3 @@ sudo apt-get install libcunit1-dev
 ```
 
 ---
-
-## Limpeza 
-
-Para limpra todos os arquivos temporarios e executaveis use o comado: 
-
-```bash
-make clean
-```
-

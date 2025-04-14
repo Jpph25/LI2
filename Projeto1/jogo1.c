@@ -96,15 +96,15 @@ void lecmd(char cmd, char *arg, int *end, char **tab, char **tabj, int x, int y)
 
 // Lê o tabuleiro de um ficheiro 
 void leTab(int x, int y, char **tab, FILE *file) {
-    int  i, j;
-    char aux;
+     int  i, j;
+     char aux;
 
-    for (i = 0; i < y; i++) {
-         for (j = 0; j < x; j++) {
-              assert(fscanf(file, " %c", &aux) == 1);
-              tab[i][j] = aux; 
-         }
-    } 
+     for (i = 0; i < y; i++) {
+          for (j = 0; j < x; j++) {
+               assert(fscanf(file, " %c", &aux) == 1);
+               tab[i][j] = aux; 
+          }
+     } 
 } 
 
 // Liberta o tabuleiro e aloca espaço para o novo tabuleiro

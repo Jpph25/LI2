@@ -10,6 +10,7 @@ CFLAGS = -Wall -Wextra -pedantic -O1 -fsanitize=address -fno-omit-frame-pointer 
 
 # Fontes do programa
 APP = $(APP_DIR)/dicas.c     \
+      $(APP_DIR)/le_cmds.c   \
       $(APP_DIR)/load_save.c \
       $(APP_DIR)/regras.c    \
       $(APP_DIR)/solve.c     \
@@ -49,10 +50,12 @@ all: $(EXC_DIR)/jogo $(EXC_DIR)/teste
 # Compila o executável principal
 $(EXC_DIR)/jogo: $(OBJ)
 	             $(CC) $(CFLAGS) -o $@ $^
+jogo: $(EXC_DIR)/jogo
 
 # Compila os testes
 $(EXC_DIR)/teste: $(OBJ) $(TEST_OBJ)
 	              $(CC) $(CFLAGS) -o $@ $^ $(TEST_LIBS)
+teste: $(EXC_DIR)/teste
 
 # Limpeza de arquivos temporários
 clean:
