@@ -10,11 +10,19 @@ l jogo, g jogo, b <coordenadas>, r <coordenadas>, d, s, v, a, A e R
 void pTab(TAB *jogo); 
 /*
 Desenha o tabuleiro que está a ser jogado.
+  - *jogo, tabuleiro do jogo
 */
 
 void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo);
 /*
+  - cmd  , carater do comando passado pelo usoário
+  - *arg , argumento passado pelo usoário
+  - *end , indica se é para continuar a ler comandos 
+  - *l   , indica se o tabuleiro está iniciado
+  - *jogo, tabuleiro do jogo  
 Lê os comandos usados pelo usuario:
+  - b, pinta uma dada casa de branco;
+  - r, risca uma dada casa;
   - l, dá load ao jogo de um dado ficheiro;
   - s, sai do jogo;
 */

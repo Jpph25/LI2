@@ -7,7 +7,7 @@
 // -- MAIN -- 
 
 int main() {
-    int end = 1, l = 1; 
+    int end = 1, l = 0; 
 // O end termina o ciclo quando o comeando s é usado    
 // O l indica se o tabuleiro está inciado 
 
@@ -28,10 +28,10 @@ int main() {
                 lecmd(cmd, "", &end, &l, &jogo);
             } else {
 
-                if (n == 2 && (cmd == 'l')) {
+                if (n == 2 && (cmd == 'l' || cmd == 'b' || cmd == 'r') ) {
                     lecmd(cmd, arg, &end, &l, &jogo);
                 } else {
-                    printf("Comando invalido\n");
+                    printf("Comando invalido\n\n");
                 }
             }
           }  

@@ -10,7 +10,6 @@ l jogo, g jogo, b <coordenadas>, r <coordenadas>, d, s, v, a, A e R
 void pTab(TAB *jogo) {
   int i, j;
 
-  putchar('\n');
   for (i = 0; i < jogo -> y; i++) {
      
        for (j = 0; j < jogo -> x; j++) {
@@ -22,6 +21,13 @@ void pTab(TAB *jogo) {
 }
 
 void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo) {
-     if (cmd == 'l') load(arg, jogo), l = 0, pTab(jogo); 
+     if (cmd == 'b' && *l) { pBranco(arg, jogo), pTab(jogo);
+     } else if (cmd == 'b') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+
+     if (cmd == 'r' && *l) { risca(arg, jogo)  , pTab(jogo);
+     } else if (cmd == 'r') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+
+     if (cmd == 'l') load(arg, jogo), *l = 1, pTab(jogo); 
+     
      if (cmd == 's') *end = 0;       
 }
