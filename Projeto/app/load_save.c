@@ -71,3 +71,25 @@ void load(char *arg, TAB *jogo) {
          fclose(file); 
      } 
 }
+
+void save(char *arg, TAB *jogo) {
+    char dir[100] = "Inputs/";
+    strcat(dir, arg);
+
+    FILE *file = fopen(dir, "w");
+    if (file == NULL) {
+        printf("ERRO: Não foi possível gravar no ficheiro %s.\n", arg);
+    } else {
+        fprintf(file, "%d %d\n", jogo->y, jogo->x);
+
+        for (int i = 0; i < jogo->y; i++) {
+            for (int j = 0; j < jogo->x; j++) {
+                fprintf(file, "%c", jogo->tab[i][j].game);
+            }
+            fprintf(file, "\n");
+        }
+
+        fclose(file);
+        printf("Tabuleiro gravado em %s com sucesso.\n\n", arg);
+    }
+}

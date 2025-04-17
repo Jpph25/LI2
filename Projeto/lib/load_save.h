@@ -69,3 +69,11 @@ Cria o caminho pra o ficheiro de onde vão ser lidos os tabuleiros
   - *arg , string do argumento dado pelo usuário (nome do ficheiro a abrir)
   - *jogo, tabuleiro do jogo
 */
+
+
+void save(char *arg, TAB *jogo);
+/*
+Guarda o tabuleiro do jogo atual em um dado ficheiro
+  - *arg , nome do ficheiro
+  - *jogo, tabuleiro do jogo
+*/

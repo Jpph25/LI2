@@ -58,16 +58,16 @@ void risca(char *arg, TAB *jogo) {
 }
 
 
-void cpyTab(TAB *jogo, TAB *ant) {
+void cpyTab(TAB *dest, TAB *font) {
     int i, j;  
 
-    jogo -> x = ant -> x;
-    jogo -> y = ant -> y;
+    dest -> x = font -> x;
+    dest -> y = font -> y;
 
-    for (i = 0; i < jogo -> y; i++) {   
-         for (j = 0; j < jogo -> x; j++) {
-              jogo -> tab[i][j].game = ant -> tab[i][j].game;
-              jogo -> tab[i][j].orig = ant -> tab[i][j].orig;
+    for (i = 0; i < dest -> y; i++) {   
+         for (j = 0; j < dest -> x; j++) {
+              dest -> tab[i][j].game = font -> tab[i][j].game;
+              dest -> tab[i][j].orig = font -> tab[i][j].orig;
          }
     }
 }

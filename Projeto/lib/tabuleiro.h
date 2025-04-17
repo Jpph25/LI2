@@ -32,19 +32,19 @@ Risca uma dada casa `arg`, transforma a letra em um cardinal (#)
 */
 
 
-void guarda(TAB *jogo, stack *passos);
-/*
-Guarda o tabuleiro da jogada anterior
-  - *jogo  , tabuleiro do jogo
-  - *passos, stack que guarda os tabuleiros anteriores 
-*/
-
-
 void cpyTab(TAB *jogo, TAB *ant);
 /*
 Copia o tabuleiro anterior para o tabuleiro do jogo
   - *jogo, tabuleiro do jogo
   - *ant , tabuleiro anterior
+*/
+
+
+void guarda(TAB *jogo, stack *passos);
+/*
+Guarda o tabuleiro da jogada anterior
+  - *jogo  , tabuleiro do jogo
+  - *passos, stack que guarda os tabuleiros anteriores 
 */
 
 

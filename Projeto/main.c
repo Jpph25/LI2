@@ -33,7 +33,7 @@ int main() {
                 lecmd(cmd, "", &end, &l, &jogo, &passos);
             } else {
 
-                if (n == 2 && (cmd == 'l' || cmd == 'b' || cmd == 'r') ) {
+                if (n == 2 && (cmd == 'l' || cmd == 'g' || cmd == 'b' || cmd == 'r') ) {
                     lecmd(cmd, arg, &end, &l, &jogo, &passos);
                 } else {
                     printf("Comando invalido\n\n");

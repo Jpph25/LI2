@@ -14,7 +14,35 @@ Regra do caminho   -
  Tem de ter um caminho ortogonal entre todas as casas pintadas;   
 */
 
+// Tipo que guarda as coordenadas de uma casa do tabuleiro
+typedef struct {
+        int x; // Linha
+        int y; // Coluna 
+} coord;
 
+
+// Tipo que guarda as coordenadas das casas brancas
+typedef struct {
+        coord *brancas; // Coordenadas das casas brancas
+        int sp;         // Ultimo elemento incializado
+        int t;          // tamanho do array 
+} CP; 
+
+
+void push(int x, int y, CP *pintadas);
+/*
+Acrescenta a coordenada de uma casa branca á lista das casas brancas
+  - x        , Linha da casa branca
+  - y        , Coluna da casa branca
+  - *pintadas, local onde são guardadas as coordenadas das casas brancas
+*/
+
+void pintadas(CP *pintadas, TAB *jogo);
+/*
+Cria uma lista com todas as casas brancas
+  - *pintadas, local onde são guardadas as coordenadas das casas brancas
+  - *jogo    , tabuleiro do jogo
+*/
 
 void rRiscadas(int x, int y, TAB *jogo);
 /*
