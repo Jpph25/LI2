@@ -1,9 +1,50 @@
-#include "tabuleiro.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
 
 /*
 Implementação dos comandos l jogo e g jogo
  jogo - nome do ficheiro a dar `load` e `save`
 */
+
+
+// Tipo de cada casa de um tabuleiro
+typedef struct{
+  char orig; // Casa original
+  char game; // Casa a ser modificada
+} casa;
+
+
+// Tipo do tabuleiro
+typedef struct{
+  int x     ; // Numero de colunas 
+  int y     ; // Numero de linhas 
+  casa **tab; // Tabuleiro  
+} TAB; 
+
+
+// Stack para guardar os passos feitos pelo usuario
+typedef struct {
+  int cap  ; // Maximo de elementos que podem ser guardados
+  int sp   ; // Quantidade de elementos guardados 
+  TAB *tabs; // Array onde os valores são guardados
+} stack;
+
+
+void limpaT (TAB *jogo); 
+/*
+Limpa um dado tabuleiro
+  - *jogo, tabuleiro do jogo
+*/
+
+
+void limpaS (stack *passos);
+/*
+Limpa uma dada stack
+  - *passos, stack com os tabuleiros anteriores
+*/
+
 
 void leTab(TAB *jogo, FILE *file); 
 /*
@@ -12,6 +53,7 @@ Lê o tabuleiro de um dado ficheiro
   - *file, ficheiro de onde vai ser lido o tabuleiro
 */
 
+
 void leJogo(TAB *jogo, FILE *file); 
 /*
 Se houver um jogo já iniciado liberta o espaço ocupado pelo jogo
@@ -19,6 +61,7 @@ Libera o espaço necessario para guardar o novo tabuleiro
   - *jogo, tabuleiro do jogo
   - *file, ficheiro de onde vai ser lido o tabuleiro
 */
+
 
 void load(char *arg, TAB *jogo);
 /*

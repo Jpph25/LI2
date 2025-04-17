@@ -1,25 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
+#include "regras.h"
 
 /*
 Implementação dos comandos b <coordenadas>, r <coordenadas> e d 
  <coordenadas> - <letra minúscula><número>
 */
 
-// Tipo de cada casa de um tabuleiro
-typedef struct{
-        char orig; // Casa original
-        char game; // Casa a ser modificada
-} casa;
-
-// Tipo do tabuleiro
-typedef struct{
-        int x;      // Numero de colunas 
-        int y;      // Numero de linhas 
-        casa **tab; // Tabuleiro  
-} TAB; 
 
 int cSpN(char *num, int t);
 /*
@@ -30,6 +15,7 @@ Converte uma string em um inteiro
   - retorna o numeoro na string na forma de um inteiro
 */
 
+
 void pBranco(char *arg, TAB *jogo);
 /*
 Pinta uma dada casa `arg` de Branco, transforma a letra minuscula da casa em uma maiscula
@@ -37,9 +23,34 @@ Pinta uma dada casa `arg` de Branco, transforma a letra minuscula da casa em uma
   - *jogo, tabuleiro do jogo
 */
 
+
 void risca(char *arg, TAB *jogo);
 /*
 Risca uma dada casa `arg`, transforma a letra em um cardinal (#)
   - *arg , string do argumento dado pelo usuário (coordenadas)
   - *jogo, tabuleiro do jogo
+*/
+
+
+void guarda(TAB *jogo, stack *passos);
+/*
+Guarda o tabuleiro da jogada anterior
+  - *jogo  , tabuleiro do jogo
+  - *passos, stack que guarda os tabuleiros anteriores 
+*/
+
+
+void cpyTab(TAB *jogo, TAB *ant);
+/*
+Copia o tabuleiro anterior para o tabuleiro do jogo
+  - *jogo, tabuleiro do jogo
+  - *ant , tabuleiro anterior
+*/
+
+
+void retorna(TAB *jogo, stack *passos);
+/*
+Volta ao tabuleiro anterior
+  - *jogo  , tabuleiro do jogo
+  - *passos, stack que guarda os tabuleiros anteriores
 */

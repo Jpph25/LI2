@@ -20,14 +20,21 @@ void pTab(TAB *jogo) {
   putchar('\n');
 }
 
-void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo) {
-     if (cmd == 'b' && *l) { pBranco(arg, jogo), pTab(jogo);
+
+void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos) {
+     if (cmd == 'b' && *l)  { guarda(jogo, passos) , pBranco(arg, jogo), pTab(jogo);
      } else if (cmd == 'b') { printf("Nenhum tabuleiro encontrado.\n\n"); }
 
-     if (cmd == 'r' && *l) { risca(arg, jogo)  , pTab(jogo);
+     if (cmd == 'r' && *l)  { guarda(jogo, passos) , risca(arg, jogo)  , pTab(jogo);
      } else if (cmd == 'r') { printf("Nenhum tabuleiro encontrado.\n\n"); }
 
-     if (cmd == 'l') load(arg, jogo), *l = 1, pTab(jogo); 
+     if (cmd == 'd' && *l)  { retorna(jogo, passos), pTab(jogo);
+     } else if (cmd == 'd') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+
+     if (cmd == 'v' && *l)  { verifica(jogo);
+     } else if (cmd == 'v') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+
+     if (cmd == 'l') load(arg, jogo), *l = 1, pTab(jogo);
      
-     if (cmd == 's') *end = 0;       
+     if (cmd == 's') *end = 0; 
 }
