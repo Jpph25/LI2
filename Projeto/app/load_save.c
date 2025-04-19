@@ -28,16 +28,31 @@ void limpaS (stack *passos) {
 
 
 void leTab(TAB *jogo, FILE *file) {
-     int  i, j;
+     int  i, j, lt = 1;
      char aux;
 
      for (i = 0; i < jogo -> y; i++) {
          for (j = 0; j < jogo -> x; j++) {
                assert(fscanf(file, " %c", &aux) == 1);
-               jogo -> tab[i][j].orig = aux;
-               jogo -> tab[i][j].game = aux;  
+               jogo -> tab[i][j].orig = aux;  
          }
-     } 
+     }
+     
+     for (i = 0; i < jogo -> y && lt; i++) {
+          for (j = 0; j < jogo -> x; j++) {
+               if (fscanf(file, " %c", &aux) == 1) {
+                   jogo -> tab[i][j].game = aux;
+               } else {
+                    lt = 0;
+               }   
+          }
+     }
+
+     for (i = 0; i < jogo -> y && !lt; i++) {
+          for (j = 0; j < jogo -> x && !lt; j++) {
+               jogo -> tab[i][j].game = jogo -> tab[i][j].orig;
+          }
+     }
 }  
 
 
@@ -81,6 +96,13 @@ void save(char *arg, TAB *jogo) {
         printf("ERRO: Não foi possível gravar no ficheiro %s.\n", arg);
     } else {
         fprintf(file, "%d %d\n", jogo->y, jogo->x);
+
+        for (int i = 0; i < jogo->y; i++) {
+            for (int j = 0; j < jogo->x; j++) {
+                fprintf(file, "%c", jogo->tab[i][j].orig);
+            }
+            fprintf(file, "\n");
+        }
 
         for (int i = 0; i < jogo->y; i++) {
             for (int j = 0; j < jogo->x; j++) {

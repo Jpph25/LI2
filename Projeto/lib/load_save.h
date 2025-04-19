@@ -8,7 +8,6 @@ Implementação dos comandos l jogo e g jogo
  jogo - nome do ficheiro a dar `load` e `save`
 */
 
-
 // Tipo de cada casa de um tabuleiro
 typedef struct{
   char orig; // Casa original

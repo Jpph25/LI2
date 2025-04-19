@@ -29,14 +29,14 @@ int main() {
           if (fgets(input, sizeof(input), stdin) != NULL) {
             n = sscanf(input, " %c %s", &cmd, arg);
 
-            if (n == 1 && (cmd == 's' || cmd == 'd' || cmd == 'v')) {
+            if (n == 1 && (cmd == 's' || cmd == 'd' || cmd == 'a' || cmd == 'A' || cmd == 'v' || cmd == 'R')) {
                 lecmd(cmd, "", &end, &l, &jogo, &passos);
             } else {
 
                 if (n == 2 && (cmd == 'l' || cmd == 'g' || cmd == 'b' || cmd == 'r') ) {
                     lecmd(cmd, arg, &end, &l, &jogo, &passos);
                 } else {
-                    printf("Comando invalido\n\n");
+                    printf("Comando inválido\n\n");
                 }
             }
           }  
