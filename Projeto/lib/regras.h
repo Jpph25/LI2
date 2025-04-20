@@ -59,6 +59,10 @@ Verifica se uma coordenada pertence a uma lista;
   - x     , coluna da casa;
   - y     , linha da casa;
   - *lista, lista;
+
+  - restorna um inteiro que indica se a coordenada pertence á lista
+    - 0, não pertence á lista;
+    - 1, pertence á lista;
 */
 
 
@@ -123,6 +127,6 @@ Verifica se o tabuleiro do jogo obdece a todas as regras
   - *p   , indica se é para imprimir algo;
 
   - retorna um inteiro que indica se o tabuleiro é válido ou não
-    - 1, válido
-    - 0, inválido
+    - 1, válido;
+    - 0, inválido;
 */

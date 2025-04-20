@@ -40,6 +40,8 @@ Verifica se as casas do tabuleiro são pintadas
   - *jogo, tabuleiro do jogo;
 
   - retorna um iteiro que indica se ouve alguma alteração no tabuleiro;
+    - 0, não houve alterações;
+    - 1, houve alterações; 
 */
 
 
@@ -69,9 +71,11 @@ Pinta de branco todas as casas adjacentes a uma casa riscada
 int dicas(TAB *jogo);
 /*
 Dá dicas ao usuário seguindo as regras do jogo
-  - *jogo, tabuleiro do jogo
+  - *jogo, tabuleiro do jogo;
 
   - retorna um inteiro que indica se houve alguma alteração no tabuleiro
+    - 0, não houve alterações;
+    - 1, houve alterações;
 */
 
 
@@ -79,7 +83,9 @@ int Dicas(TAB *jogo);
 /*
 Dá dicas ao usuário seguindo as regras do jogo até não ser mais possivel 
 (ou resolveu o problema ou houve um erro do usuário)
-  - *jogo, tabuleiro do jogo
+  - *jogo, tabuleiro do jogo;
 
   - retorna um inteiro que indica se houve alguma alteração no tabuleiro
+    - 0, não houve alterações;
+    - 1, houve alterações;
 */

@@ -58,21 +58,6 @@ void risca(char *arg, TAB *jogo) {
 }
 
 
-void cpyTab(TAB *dest, TAB *font) {
-    int i, j;  
-
-    dest -> x = font -> x;
-    dest -> y = font -> y;
-
-    for (i = 0; i < dest -> y; i++) {   
-         for (j = 0; j < dest -> x; j++) {
-              dest -> tab[i][j].game = font -> tab[i][j].game;
-              dest -> tab[i][j].orig = font -> tab[i][j].orig;
-         }
-    }
-}
-
-
 void guarda(TAB *jogo, stack *passos) {
 
      if (passos -> cap == 0) {

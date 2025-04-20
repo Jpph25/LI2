@@ -34,22 +34,22 @@ typedef struct {
 void limpaT (TAB *jogo); 
 /*
 Limpa um dado tabuleiro
-  - *jogo, tabuleiro do jogo
+  - *jogo, tabuleiro do jogo;
 */
 
 
 void limpaS (stack *passos);
 /*
 Limpa uma dada stack
-  - *passos, stack com os tabuleiros anteriores
+  - *passos, stack com os tabuleiros anteriores;
 */
 
 
 void leTab(TAB *jogo, FILE *file); 
 /*
 Lê o tabuleiro de um dado ficheiro
-  - *jogo, tabuleiro do jogo
-  - *file, ficheiro de onde vai ser lido o tabuleiro
+  - *jogo, tabuleiro do jogo;
+  - *file, ficheiro de onde vai ser lido o tabuleiro;
 */
 
 
@@ -57,22 +57,22 @@ void leJogo(TAB *jogo, FILE *file);
 /*
 Se houver um jogo já iniciado liberta o espaço ocupado pelo jogo
 Libera o espaço necessario para guardar o novo tabuleiro 
-  - *jogo, tabuleiro do jogo
-  - *file, ficheiro de onde vai ser lido o tabuleiro
+  - *jogo, tabuleiro do jogo;
+  - *file, ficheiro de onde vai ser lido o tabuleiro;
 */
 
 
 void load(char *arg, TAB *jogo);
 /*
 Cria o caminho pra o ficheiro de onde vão ser lidos os tabuleiros
-  - *arg , string do argumento dado pelo usuário (nome do ficheiro a abrir)
-  - *jogo, tabuleiro do jogo
+  - *arg , string do argumento dado pelo usuário (nome do ficheiro a abrir);
+  - *jogo, tabuleiro do jogo;
 */
 
 
 void save(char *arg, TAB *jogo);
 /*
 Guarda o tabuleiro do jogo atual em um dado ficheiro
-  - *arg , nome do ficheiro
-  - *jogo, tabuleiro do jogo
+  - *arg , nome do ficheiro;
+  - *jogo, tabuleiro do jogo;
 */

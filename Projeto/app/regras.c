@@ -205,7 +205,7 @@ int verifica(TAB *jogo, int *p) {
 
     caminho(&pintadas, &visitadas, jogo, &r, p);
 
-    putchar('\n');
+    if (*p) putchar('\n');
 
     limpaL(&visitadas);
     limpaL(&pintadas);

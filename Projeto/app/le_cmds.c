@@ -59,7 +59,9 @@ void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos) {
          if (t == 1) printf("Tabuleiro válido.\n");
      } else if (cmd == 'v') { printf("Nenhum tabuleiro encontrado.\n\n"); }
 
-     if (cmd == 'R' && *l)  { resolve(jogo), pTab(jogo);
+     if (cmd == 'R' && *l)  { 
+         guarda(jogo, passos), t = resolve(jogo), pTab(jogo);
+         if (t == 0) rGuardar(passos), printf("Tabuleiro já resolvido.\n");
      } else if (cmd == 'R') { printf("Nenhum tabuleiro encontrado.\n\n"); }
 
      if (cmd == 'g' && *l)  { save(arg, jogo);
