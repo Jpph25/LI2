@@ -62,17 +62,29 @@ Libera o espaço necessario para guardar o novo tabuleiro
 */
 
 
-void load(char *arg, TAB *jogo);
+void lePassos(int x, int y, stack *passos, FILE *file); 
 /*
-Cria o caminho pra o ficheiro de onde vão ser lidos os tabuleiros
-  - *arg , string do argumento dado pelo usuário (nome do ficheiro a abrir);
-  - *jogo, tabuleiro do jogo;
+Lê os passos anteriores de um tabuleiro guardado
+  - x      , tamanho das linhas;
+  - y      , tamanho das colunas;
+  - *passos, stack com os tabuleiros anteriores;
+  - *file  , ficheiro de onde vão ser lidos os ficheiros;
 */
 
 
-void save(char *arg, TAB *jogo);
+void load(char *arg, TAB *jogo, stack *passos);
+/*
+Cria o caminho pra o ficheiro de onde vão ser lidos os tabuleiros
+  - *arg   , string do argumento dado pelo usuário (nome do ficheiro a abrir);
+  - *jogo  , tabuleiro do jogo;
+  - *passos, stack com os tabuleiros anteriores;
+*/
+
+
+void save(char *arg, TAB *jogo, stack *passos);
 /*
 Guarda o tabuleiro do jogo atual em um dado ficheiro
-  - *arg , nome do ficheiro;
-  - *jogo, tabuleiro do jogo;
+  - *arg   , nome do ficheiro;
+  - *jogo  , tabuleiro do jogo;
+  - *passos, stack com os tabuleiros anteriores;
 */

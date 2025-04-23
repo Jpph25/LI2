@@ -24,6 +24,10 @@ void limpaS (stack *passos) {
     }
 
     free(passos -> tabs);    
+    
+    passos -> tabs = NULL;
+    passos -> cap  = 0;
+    passos -> sp   = 0;
 }
 
 
@@ -74,20 +78,57 @@ void leJogo(TAB *jogo, FILE *file) {
 }
 
 
-void load(char *arg, TAB *jogo) {
+void lePassos(int x, int y, stack *passos, FILE *file) {
+     int  i, j;
+     char aux;
+     
+     for(passos -> sp = 0; passos -> sp < passos -> cap; passos -> sp ++) {
+         passos -> tabs[passos -> sp].y = y;
+         passos -> tabs[passos -> sp].x = x;
+         passos -> tabs[passos -> sp].tab = malloc(y * sizeof(casa*));
+         for (i = 0; i < y; i++) {
+              passos -> tabs[passos -> sp].tab[i] = malloc(x * sizeof(casa));
+              for (j = 0; j < x; j++) {
+                   if (fscanf(file, " %c", &aux) == 1) {
+                       passos -> tabs[passos -> sp].tab[i][j].game = aux;
+                   }
+              }
+         }
+     }
+}
+
+
+void load(char *arg, TAB *jogo, stack *passos) {
      char dir[100] = "Inputs/"; 
      strcat(dir, arg);
      
+     if (passos -> tabs != NULL) limpaS(passos);
+
      FILE *file = fopen(dir, "r"); 
      if (file == NULL) {
          printf("ERRO: Ficheiro %s não encontrado.", arg);
      } else {
          leJogo(jogo, file);
+
+         int x, y, t;
+         x = jogo -> x;
+         y = jogo -> y;
+    
+         if(fscanf(file, "%d", &t) == 1) {
+            passos -> cap  = t;
+            passos -> sp   = 0;
+            passos -> tabs = malloc(passos -> cap * sizeof(TAB));
+    
+            lePassos(x, y, passos, file);
+         }
+
          fclose(file); 
-     } 
+     }
 }
 
-void save(char *arg, TAB *jogo) {
+
+void save(char *arg, TAB *jogo, stack *passos) {
+    int i, j, k;
     char dir[100] = "Inputs/";
     strcat(dir, arg);
 
@@ -97,18 +138,32 @@ void save(char *arg, TAB *jogo) {
     } else {
         fprintf(file, "%d %d\n", jogo->y, jogo->x);
 
-        for (int i = 0; i < jogo->y; i++) {
-            for (int j = 0; j < jogo->x; j++) {
+        // Original
+        for (i = 0; i < jogo -> y; i++) {
+            for (j = 0; j < jogo -> x; j++) {
                 fprintf(file, "%c", jogo->tab[i][j].orig);
             }
             fprintf(file, "\n");
-        }
+        } 
 
-        for (int i = 0; i < jogo->y; i++) {
-            for (int j = 0; j < jogo->x; j++) {
+        // Jogo
+        for (i = 0; i < jogo -> y; i++) {
+            for (j = 0; j < jogo -> x; j++) {
                 fprintf(file, "%c", jogo->tab[i][j].game);
             }
             fprintf(file, "\n");
+        }
+        
+        fprintf(file, "%d\n", passos -> sp);
+
+        // Stack
+        for (k = 0; k < passos -> sp; k++) {
+            for (i = 0; i < jogo -> y; i++) {
+                for (j = 0; j < jogo -> x; j++) {
+                    fprintf(file, "%c", passos -> tabs[k].tab[i][j].game);
+                }
+                fprintf(file, "\n");
+            }
         }
 
         fclose(file);
