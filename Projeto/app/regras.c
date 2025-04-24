@@ -33,8 +33,8 @@ void brancas(CP *pintadas, TAB *jogo) {
 
      for (i = 0; i < jogo -> y; i++) {
           for (j = 0; j < jogo -> x; j++) {
-               if (jogo -> tab[i][j].game >= 'A' && jogo -> tab[i][j].game <= 'Z')
-                   push(j, i, pintadas);  
+               if (jogo -> tab[i][j].game != '#')
+                     push(j, i, pintadas);  
           } 
      }
 }
@@ -100,20 +100,21 @@ void caminho(CP *pintadas, CP *visitadas, TAB *jogo, int *r, int *p) {
 
      brancas(pintadas, jogo);
 
+
      for (i = 0; i < jogo -> y && v; i++) {
           for (j = 0 ; j < jogo -> x && v; j++) {
-               if (jogo -> tab[i][j].game >= 'A' && jogo -> tab[i][j].game <= 'Z') {
+               if (jogo -> tab[i][j].game != '#') {
                    sX = j;
                    sY = i;
-                   v = 0; 
+                   v  = 0; 
                }    
           }
      }
      
      if (sX != -1 && sY != -1) {
-          push    (j, i, visitadas);
-          hCaminho(j, i, jogo, visitadas);
-          elemB   (visitadas, pintadas, jogo, r, p); 
+         push    (j, i, visitadas);
+         hCaminho(j, i, jogo, visitadas);
+         elemB   (visitadas, pintadas, jogo, r, p); 
      }
 }
 
@@ -182,16 +183,19 @@ void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p) {
 
 
 int verifica(TAB *jogo, int *p) {
-    int i, j, r = 1; 
+    int i, j, r = 1, h = 0; 
     
     for (i = 0; i < jogo -> y; i++) {
          for (j = 0; j < jogo -> x; j++) {
-              if (jogo -> tab[i][j].game == '#') 
+              if (jogo -> tab[i][j].game == '#') { 
                   rRiscadas(j, i, jogo, &r, p);
+                  h = 1;
+              }
               if (jogo -> tab[i][j].game >= 'A' && jogo -> tab[i][j].game <= 'Z')
                   rBrancas(j, i, jogo -> tab[i][j].game, jogo, &r, p);  
         } 
     }
+
 
     CP pintadas, visitadas; 
 
@@ -203,9 +207,11 @@ int verifica(TAB *jogo, int *p) {
     visitadas.t       = 0;
     visitadas.brancas = NULL;
 
-    caminho(&pintadas, &visitadas, jogo, &r, p);
+    if(h) {
+       caminho(&pintadas, &visitadas, jogo, &r, p);
+    }
 
-    if (*p) putchar('\n');
+    if (*p && !r) putchar('\n');
 
     limpaL(&visitadas);
     limpaL(&pintadas);

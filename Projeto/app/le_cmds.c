@@ -35,47 +35,64 @@ void rGuardar(stack *passos) {
 void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos) {
      int t, p = 1;
 
+     putchar('\n');
+
      if (cmd == 'b' && *l)  { 
-         guarda(jogo, passos) , pBranco(arg, jogo), pTab(jogo);
-         if(tabIguais(&passos -> tabs[passos -> sp - 1], jogo)) rGuardar(passos);
-     } else if (cmd == 'b') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+         if (strlen(arg) == 1) { printf("Erro: Comando Invalido\n\n"); 
+         } else {
+             guarda(jogo, passos) , pBranco(arg, jogo), pTab(jogo);
+             if(tabIguais(&passos -> tabs[passos -> sp - 1], jogo)) rGuardar(passos);
+         }
+     } else if (cmd == 'b') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'r' && *l)  { 
-         guarda(jogo, passos) , risca(arg, jogo)  , pTab(jogo);
-         if(tabIguais(&passos -> tabs[passos -> sp - 1], jogo)) rGuardar(passos);
-     } else if (cmd == 'r') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+         if (strlen(arg) == 1) { printf("Erro: Comando Invalido\n\n"); 
+         } else {
+             guarda(jogo, passos) , risca(arg, jogo)  , pTab(jogo);
+             if(tabIguais(&passos -> tabs[passos -> sp - 1], jogo)) rGuardar(passos);
+         }
+     } else if (cmd == 'r') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'd' && *l)  { retorna(jogo, passos), pTab(jogo);
-     } else if (cmd == 'd') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'd') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'a' && *l)  { 
          guarda(jogo, passos) , t = dicas(jogo);
-         if (t == 0) rGuardar(passos), printf ("Não há dicas possíveis.\n");
+         if (t == 0) rGuardar(passos), printf ("Não há dicas possíveis.\n\n");
          pTab(jogo);
-     } else if (cmd == 'a') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'a') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'A' && *l)  { 
          guarda(jogo, passos) , t = Dicas(jogo); 
-         if (t == 0) rGuardar(passos), printf ("Não há dicas possíveis.\n");
+         if (t == 0) rGuardar(passos), printf ("Não há dicas possíveis.\n\n");
          pTab(jogo);
-     } else if (cmd == 'A') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'A') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'v' && *l)  {
          t = verifica(jogo, &p);
-         if (t == 1) printf("Tabuleiro válido.\n");
+         if (t == 1) printf("Tabuleiro válido.\n\n");
          pTab(jogo);
-     } else if (cmd == 'v') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'v') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'R' && *l)  { 
          guarda(jogo, passos), t = resolve(jogo); 
-         if (t == 0) rGuardar(passos), printf("Tabuleiro já resolvido.\n");
+         if (t == 0) rGuardar(passos), printf("Tabuleiro já resolvido.\n\n");
          pTab(jogo);
-     } else if (cmd == 'R') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'R') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'g' && *l)  { save(arg, jogo, passos);
-     } else if (cmd == 'g') { printf("Nenhum tabuleiro encontrado.\n\n"); }
+     } else if (cmd == 'g') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
+
 
      if (cmd == 'l') load(arg, jogo, passos), *l = 1, pTab(jogo);
      
+
      if (cmd == 's') *end = 0; 
 }
