@@ -4,6 +4,20 @@
 Implementação dos comando R 
 */
 
+void pT(TAB *jogo) {
+     int i, j;
+   
+     for (i = 0; i < jogo -> y; i++) {
+        
+          for (j = 0; j < jogo -> x; j++) {
+               printf ("%c ", jogo -> tab[i][j].orig); 
+          }
+          putchar('\n');
+     }
+     putchar('\n');
+   }
+
+
 
 void cpyTab(TAB *dest, TAB *font) {
      int i, j;  
@@ -34,21 +48,42 @@ int tabIguais(TAB *aux, TAB *jogo) {
 
 
 void minTmai(TAB *jogo, int *r) {
-     int i, j;
+     int i, j, p = 0;
+     TAB aux;
+    
+     aux.x = jogo -> x;
+     aux.y = jogo -> y;
+ 
+     aux.tab = malloc(aux.y * sizeof(casa*));
+     for (i = 0; i < aux.y; i++) {
+          aux.tab[i] = malloc(aux.x * sizeof(casa)); 
+     }
+
+     cpyTab(&aux, jogo);
 
      for (i = 0; i < jogo -> y; i++) {
           for (j = 0; j < jogo -> x; j++) {
-               if(jogo -> tab[i][j].game >= 'a' && jogo -> tab[i][j].game <= 'z') {
-                  jogo -> tab[i][j].game -= 32;
+               if(aux.tab[i][j].game >= 'a' && aux.tab[i][j].game <= 'z') {
+                  aux.tab[i][j].game -= 32;
+                  Dicas(&aux);
+                  if (verifica(&aux, &p)) { 
+                      cpyTab(jogo, &aux);
+                  } else {
+                      jogo -> tab[i][j].game = '#';
+                      Dicas(jogo);
+                      cpyTab(&aux, jogo);
+                  }
                   *r = 1;
                }   
           }
      }
+
+     limpaT(&aux);
 }
 
 
 void adjacentes(int x, int y, char c, TAB *jogo, int *r) {
-     int i, j, v = 1, p = 0;
+     int i, v = 1, p = 0;
      TAB aux;
     
      aux.x = jogo -> x;
@@ -59,11 +94,7 @@ void adjacentes(int x, int y, char c, TAB *jogo, int *r) {
           aux.tab[i] = malloc(aux.x * sizeof(casa)); 
      }
  
-     for(i = 0; i < aux.y; i++) {
-         for (j = 0; j < aux.x; j++) {
-              aux.tab[i][j].game = jogo -> tab[i][j].game;
-         }
-     }
+     cpyTab(&aux, jogo);
 
      if (y + 1 < jogo -> y && v && jogo -> tab[y + 1][x].orig == c) {  
          aux.tab[y + 1][x].game = '#';
@@ -124,7 +155,7 @@ void unica(int x, int y, char c, TAB *jogo, int *r) {
           }
      }
      
-     if (cont == 0 && jogo -> tab[y][x].game >= 'a' && jogo -> tab[y][x].game <= 'z') 
+     if (cont == 0 && ((jogo -> tab[y][x].game >= 'a' && jogo -> tab[y][x].game <= 'z') || jogo -> tab[y][x].game == '#' )) 
          jogo -> tab[y][x].game = jogo -> tab[y][x].orig - 32, *r = 1; 
 }
 
@@ -146,7 +177,7 @@ void percorre(TAB *jogo, int *r) {
 int resolve(TAB *jogo) {
     int p = 0, r = 0;  
 
-    if (!verifica(jogo, &p)) printf("Tabuleiro atual invalido.\n");
+    if (!verifica(jogo, &p)) printf("Tabuleiro atual invalido.\n\n");
 
     percorre(jogo, &r); 
      

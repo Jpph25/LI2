@@ -83,12 +83,12 @@ void elemB(CP *visitadas, CP *pintadas, TAB *jogo, int *r, int *p) {
           x = visitadas -> brancas[i].x;
           y = visitadas -> brancas[i].y;
 
-          if (jogo -> tab[y][x].game >= 'A' && jogo -> tab[y][x].game <= 'Z' && elem(x, y, pintadas))
+          if (jogo -> tab[y][x].game != '#' && elem(x, y, pintadas))
               c ++;
      }
 
      if (c != pintadas -> sp) { 
-         if (*p) printf("Não existe um caminho ortogonal entre todas as casas pintadas.\n");
+         if (*p) printf("Não existe um caminho ortogonal entre todas as casas pintadas.\n\n");
          *r = 0; 
      }    
 }
@@ -99,7 +99,6 @@ void caminho(CP *pintadas, CP *visitadas, TAB *jogo, int *r, int *p) {
      int sX = -1, sY = -1;
 
      brancas(pintadas, jogo);
-
 
      for (i = 0; i < jogo -> y && v; i++) {
           for (j = 0 ; j < jogo -> x && v; j++) {

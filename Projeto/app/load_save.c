@@ -65,7 +65,7 @@ void leJogo(TAB *jogo, FILE *file) {
      
      if (jogo->tab != NULL) {
          limpaT(jogo);
-    } 
+     } 
      
      assert(fscanf(file, "%d %d", &jogo -> y, &jogo -> x) == 2);
 
