@@ -19,8 +19,12 @@ APP = $(APP_DIR)/dicas.c     \
 
 OBJ = $(patsubst %.c,$(EXC_DIR)/%.o,$(notdir $(APP)))
 
+TEST_OBJ_DEP = $(filter-out $(EXC_DIR)/main.o, $(OBJ))
+
 # Fontes dos testes
-TEST_APP = $(TST_DIR)/t_dicas.c     \
+TEST_APP = $(TST_DIR)/t_aux.c       \
+           $(TST_DIR)/t_dicas.c     \
+           $(TST_DIR)/t_le_cmds.c   \
            $(TST_DIR)/t_load_save.c \
            $(TST_DIR)/t_regras.c    \
            $(TST_DIR)/t_solve.c     \
@@ -38,28 +42,28 @@ $(EXC_DIR)/%.o: $(APP_DIR)/%.c
 
 # Regra geral para compilar .c → Exec/.o (para testes)
 $(EXC_DIR)/%.o: $(TST_DIR)/%.c
-	            $(CC) $(CFLAGS) -c $< -o $@
+	          $(CC)     $(CFLAGS) -c $< -o $@
 
 # Regra geral para main.c (que está fora do app/)
 $(EXC_DIR)/%.o: %.c
-	            $(CC) $(CFLAGS) -c $< -o $@
+	          $(CC) $(CFLAGS) -c $< -o $@
 
 # Alvo padrão
 all: $(EXC_DIR)/jogo $(EXC_DIR)/teste
 
 # Compila o executável principal
 $(EXC_DIR)/jogo: $(OBJ)
-	             $(CC) $(CFLAGS) -o $@ $^
+	           $(CC) $(CFLAGS) -o $@ $^
 jogo: $(EXC_DIR)/jogo
 
 # Compila os testes
-$(EXC_DIR)/teste: $(OBJ) $(TEST_OBJ)
-	              $(CC) $(CFLAGS) -o $@ $^ $(TEST_LIBS)
+$(EXC_DIR)/teste: $(TEST_OBJ_DEP) $(TEST_OBJ)
+	            $(CC)           $(CFLAGS)  -o $@ $^ $(TEST_LIBS)
 teste: $(EXC_DIR)/teste
 
 # Limpeza de arquivos temporários
 clean:
 	  rm -f $(OBJ) $(TEST_OBJ)
-	  rm -f $(EXC_DIR)/jogo $(EXC_DIR)/teste
+	  rm -f $(EXC_DIR)/jogo   $(EXC_DIR)/teste
 
 .PHONY: all clean

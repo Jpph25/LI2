@@ -111,8 +111,8 @@ void caminho(CP *pintadas, CP *visitadas, TAB *jogo, int *r, int *p) {
      }
      
      if (sX != -1 && sY != -1) {
-         push    (j, i, visitadas);
-         hCaminho(j, i, jogo, visitadas);
+         push    (sX, sY, visitadas);
+         hCaminho(sX, sY, jogo, visitadas);
          elemB   (visitadas, pintadas, jogo, r, p); 
      }
 }

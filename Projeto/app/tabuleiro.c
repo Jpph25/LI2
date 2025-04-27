@@ -23,12 +23,8 @@ int cSpN(char *num, int t) {
 
 
 void pBranco(char *arg, TAB *jogo) {
-     
      int x = arg[0] - 'a';
      int y = cSpN(arg + 1, strlen(arg + 1) - 1);
-
-//     printf ("%s\n", arg);
-//     printf ("%d %d\n", x, y); 
      
      if (x < 0 || x >= jogo -> x || y < 0 || y >= jogo -> y) {
          printf("Erro: Coordenadas invalidas\n\n");
@@ -45,9 +41,6 @@ void pBranco(char *arg, TAB *jogo) {
 void risca(char *arg, TAB *jogo) {
     int x = arg[0] - 'a';
     int y = cSpN(arg + 1, strlen(arg + 1) - 1);
-
-//    printf ("%s\n", arg);
-//    printf ("%d %d\n", x, y); 
     
     if (x < 0 || x >= jogo -> x || y < 0 || y >= jogo -> y) {
         printf("Erro: Coordenadas invalidas\n\n");

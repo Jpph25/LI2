@@ -4,21 +4,6 @@
 Implementação dos comando R 
 */
 
-void pT(TAB *jogo) {
-     int i, j;
-   
-     for (i = 0; i < jogo -> y; i++) {
-        
-          for (j = 0; j < jogo -> x; j++) {
-               printf ("%c ", jogo -> tab[i][j].orig); 
-          }
-          putchar('\n');
-     }
-     putchar('\n');
-   }
-
-
-
 void cpyTab(TAB *dest, TAB *font) {
      int i, j;  
  

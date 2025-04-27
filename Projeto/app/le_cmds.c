@@ -9,16 +9,16 @@ l jogo, g jogo, b <coordenadas>, r <coordenadas>, d, s, v, a, A e R
 
 
 void pTab(TAB *jogo) {
-  int i, j;
+     int i, j;
 
-  for (i = 0; i < jogo -> y; i++) {
+     for (i = 0; i < jogo -> y; i++) {
      
-       for (j = 0; j < jogo -> x; j++) {
-            printf ("%c ", jogo -> tab[i][j].game); 
-       }
-       putchar('\n');
-  }
-  putchar('\n');
+          for (j = 0; j < jogo -> x; j++) {
+               printf ("%c ", jogo -> tab[i][j].game); 
+          }
+          putchar('\n');
+     }
+     putchar('\n');
 }
 
 
