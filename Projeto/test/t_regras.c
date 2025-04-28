@@ -5,6 +5,17 @@
 testes do comando v
 */
 
+void t_limpaL(void) {
+     CP lista = {NULL, 0, 0};
+     push(1, 1, &lista);
+     push(2, 2, &lista);
+
+     limpaL(&lista);
+
+     CU_ASSERT_PTR_NULL(lista.brancas);
+}
+
+
 void t_push(void) {
      int x = 1, y = 1;
      CP lista = {NULL, 0, 0};
@@ -305,6 +316,7 @@ void t_regras(void) {
      brancas(&pintadas, &jogo1);
 
 
+     t_limpaL   ();
      t_push     ();
      t_branca   (&pintadas);
      t_elem     (&pintadas);

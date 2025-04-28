@@ -13,6 +13,10 @@ void limpaT (TAB *jogo) {
     }
 
     free(jogo -> tab);
+
+    jogo -> tab = NULL;
+    jogo -> x   = 0;
+    jogo -> y   = 0; 
 }
 
 

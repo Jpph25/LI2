@@ -9,6 +9,7 @@ void t_guarda_retorna(void);
 void t_tabuleiro     (void);
 
 // Testes ´regras.c´
+void t_limpaL   (void);
 void t_push     (void);
 void t_branca   (CP *pintadas);
 void t_elem     (CP *lista);
@@ -25,6 +26,13 @@ void cmd_b    (TAB *jogo);
 void cmd_r    (TAB *jogo);
 void cmd_d    (TAB *jogo);
 void t_le_cmds(void);
+
+// Testes ´load_save.c´
+void t_limpaT     (void);
+void t_limpaS     (TAB *jogo);
+void t_le_Jogo_Tab(void);
+void t_l_s        (TAB *jogo);
+void t_load_save  (void);
 
 
 // -- MAIN (Testes) --
@@ -43,6 +51,7 @@ int main() {
     CU_add_test(pSuite, "Teste tabuleiro", t_tabuleiro);
     CU_add_test(pSuite, "Teste regras"   , t_regras   );
     CU_add_test(pSuite, "Teste le_cmd"   , t_le_cmds  );
+    CU_add_test(pSuite, "Teste load_save", t_load_save);
 
 
     CU_basic_set_mode  (CU_BRM_VERBOSE);

@@ -6,6 +6,10 @@ Implementação do comando v
 
 void limpaL (CP *lista) {
      free (lista -> brancas); 
+
+     lista -> brancas = NULL;
+     lista -> sp      = 0;
+     lista -> t       = 0;
 }
 
 
