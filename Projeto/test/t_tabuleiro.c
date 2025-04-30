@@ -13,12 +13,14 @@ void t_cSpN(void) {
 
 
 void t_pBranco(void) {
+     int i;
+
      TAB jogo;
      jogo.x = 2;
      jogo.y = 2; 
 
      jogo.tab = malloc(jogo.y * sizeof(casa*));
-     for (int i = 0; i < jogo.y; i++) 
+     for (i = 0; i < jogo.y; i++) 
           jogo.tab[i] = malloc(jogo.x * sizeof(casa));
 
      char tab[4] = {
@@ -46,12 +48,15 @@ void t_pBranco(void) {
 
 
 void t_risca(void) {
+     int i;
+
      TAB jogo;
+
      jogo.x = 2;
      jogo.y = 2; 
 
      jogo.tab = malloc(jogo.y * sizeof(casa*));
-     for (int i = 0; i < jogo.y; i++) 
+     for (i = 0; i < jogo.y; i++) 
           jogo.tab[i] = malloc(jogo.x * sizeof(casa));
     
      char tab[4] = {
@@ -79,12 +84,14 @@ void t_risca(void) {
 
 
 void t_guarda_retorna(void) {
+     int i;
+
      TAB jogo;
      jogo.x = 2;
      jogo.y = 2; 
 
      jogo.tab = malloc(jogo.y * sizeof(casa*));
-     for (int i = 0; i < jogo.y; i++) 
+     for (i = 0; i < jogo.y; i++) 
           jogo.tab[i] = malloc(jogo.x * sizeof(casa));
     
      char tab[4] = {

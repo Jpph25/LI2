@@ -4,6 +4,7 @@
 Funções auxiliares para os testes
 */
 
+// Imprime um dado tabuleiro
 void pT(TAB *jogo) {
     int i, j;
   

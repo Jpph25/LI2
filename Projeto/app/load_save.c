@@ -102,32 +102,36 @@ void lePassos(int x, int y, stack *passos, FILE *file) {
 }
 
 
-void load(char *arg, TAB *jogo, stack *passos) {
-     char dir[100] = "Inputs/"; 
-     strcat(dir, arg);
+int load(char *arg, TAB *jogo, stack *passos) {
+    int r = 1;
+    char dir[100] = "Inputs/"; 
+    strcat(dir, arg);
      
-     if (passos -> tabs != NULL) limpaS(passos);
+    if (passos -> tabs != NULL) limpaS(passos);
 
-     FILE *file = fopen(dir, "r"); 
-     if (file == NULL) {
-         printf("ERRO: Ficheiro ´%s´ não encontrado\n\n", arg);
-     } else {
-         leJogo(jogo, file);
+    FILE *file = fopen(dir, "r"); 
+    if (file == NULL) {
+        printf("ERRO: Ficheiro ´%s´ não encontrado\n\n", arg);
+        r = 0;
+    } else {
+        leJogo(jogo, file);
 
-         int x, y, t;
-         x = jogo -> x;
-         y = jogo -> y;
-    
-         if(fscanf(file, "%d", &t) == 1) {
-            passos -> cap  = t;
-            passos -> sp   = 0;
-            passos -> tabs = malloc(passos -> cap * sizeof(TAB));
-    
-            lePassos(x, y, passos, file);
-         }
+        int x, y, t;
+        x = jogo -> x;
+        y = jogo -> y;
+   
+        if(fscanf(file, "%d", &t) == 1) {
+           passos -> cap  = t;
+           passos -> sp   = 0;
+           passos -> tabs = malloc(passos -> cap * sizeof(TAB));
+   
+           lePassos(x, y, passos, file);
+        }
 
-         fclose(file); 
-     }
+        fclose(file); 
+    }
+
+    return r;
 }
 
 

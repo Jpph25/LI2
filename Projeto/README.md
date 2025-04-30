@@ -2,6 +2,12 @@
 
 Projeto desenvolvido para a disciplina de Laboratórios de Informática II. O sistema implementa um jogo simples em linguagem C, com organização modular e testes unitários utilizando a biblioteca CUnit.
 
+## Autores
+
+Carolina Amorim Neiva    <a111537@alunos.uminho.pt>
+Gonçalo Gomes Gonçalves  <a108313@alunos.uminho.pt>
+João Pedro Pimenta Gomes <a110587@alunos.uminho.pt>
+
 ## Jogo
 
 ### Compilador
@@ -56,6 +62,7 @@ make clean
 .
 ├── app/            # Código-fonte do jogo (.c)
 ├── Exec/           # Executaveis compilados
+├── gCov/           # Relatorios do gcov
 ├── Inputs/         # Inputs para dar load 
 ├── lib/            # Arquivos de cabeçalho (.h)
 ├── test/           # Arquivos de teste com CUnit

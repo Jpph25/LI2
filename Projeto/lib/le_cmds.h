@@ -35,6 +35,11 @@ Lê os comandos usados pelo usuario:
   - b, pinta uma dada casa de branco;
   - r, risca uma dada casa;
   - d, volta á jogada anterior;
+  - v, verifica se o tabuleiro é valido;
+  - a, dá dicas ao usuario para resolver o tabuleiro;
+  - A, dá dicas ao usuario até não ser mais possivel faze-lo;
+  - R, resolve o tebuleiro automaticamente;
   - l, dá load ao jogo de um dado ficheiro;
+  - g, grava o jogo em um ficheiro;
   - s, sai do jogo;
 */

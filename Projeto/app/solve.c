@@ -29,7 +29,7 @@ int tabIguais(TAB *aux, TAB *jogo) {
     }
    
     return r;
-} 
+}
 
 
 void minTmai(TAB *jogo, int *r) {

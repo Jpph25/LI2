@@ -6,13 +6,14 @@ Teste dos comandos l jogo e g jogo
 */
 
 void t_limpaT(void) {
+     int i;
      TAB jogo;
 
      jogo.x = 2;
      jogo.y = 2;
 
      jogo.tab = malloc(jogo.y * sizeof(casa*));
-     for (int i = 0; i < jogo.y; i++) 
+     for (i = 0; i < jogo.y; i++) 
           jogo.tab[i] = malloc(jogo.x * sizeof(casa));
     
      char tab[4] = {
@@ -83,10 +84,11 @@ void t_l_s(TAB *jogo) {
 
 
      TAB jogot;
+     jogot.tab = NULL;
+
      stack passost = {0, 0, NULL}; 
 
      load("NULL", &jogot, &passost);
-
 
      CU_ASSERT_PTR_NULL(jogot.tab);
      CU_ASSERT_PTR_NULL(passost.tabs);
@@ -101,18 +103,19 @@ void t_l_s(TAB *jogo) {
      limpaS(&passost);
      limpaT(&jogot);
 
-     remove("Inputs/test");
+     remove("Inputs/teste");
 }
 
 
 void t_load_save(void) {
+     int i;
      TAB jogo;
 
      jogo.x = 2;
      jogo.y = 2;
 
      jogo.tab = malloc(jogo.y * sizeof(casa*));
-     for (int i = 0; i < jogo.y; i++) 
+     for (i = 0; i < jogo.y; i++) 
           jogo.tab[i] = malloc(jogo.x * sizeof(casa));
    
      char tab[4] = {

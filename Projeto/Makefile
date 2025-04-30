@@ -66,4 +66,4 @@ clean:
 	  rm -f $(OBJ) $(TEST_OBJ)
 	  rm -f $(EXC_DIR)/jogo   $(EXC_DIR)/teste
 
-.PHONY: all clean
+.PHONY: all clean jogo teste

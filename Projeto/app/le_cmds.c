@@ -91,8 +91,10 @@ void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos) {
      } else if (cmd == 'g') { printf("Erro: Nenhum tabuleiro encontrado.\n\n"); }
 
 
-     if (cmd == 'l') load(arg, jogo, passos), *l = 1, pTab(jogo);
-     
+     if (cmd == 'l') { t = load(arg, jogo, passos); 
+         if (t) *l = 1, pTab(jogo);
+     }
 
+     
      if (cmd == 's') *end = 0; 
 }
