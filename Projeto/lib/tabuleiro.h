@@ -16,19 +16,21 @@ Converte uma string em um inteiro
 */
 
 
-void pBranco(char *arg, TAB *jogo);
+void pBranco(char *arg, TAB *jogo, int *p);
 /*
 Pinta uma dada casa `arg` de Branco, transforma a letra minuscula da casa em uma maiscula
   - *arg , string do argumento dado pelo usuário (coordenadas);
   - *jogo, tabuleiro do jogo;
+  - *p   , indica se é para imprimir coisas;
 */
 
 
-void risca(char *arg, TAB *jogo);
+void risca(char *arg, TAB *jogo, int *p);
 /*
 Risca uma dada casa `arg`, transforma a letra em um cardinal (#)
   - *arg , string do argumento dado pelo usuário (coordenadas);
   - *jogo, tabuleiro do jogo;
+  - *p   , indica se é para imprimir coisas;
 */
 
 
@@ -40,9 +42,10 @@ Guarda o tabuleiro da jogada anterior
 */
 
 
-void retorna(TAB *jogo, stack *passos);
+void retorna(TAB *jogo, stack *passos, int *p);
 /*
 Volta ao tabuleiro anterior
   - *jogo  , tabuleiro do jogo;
   - *passos, stack que guarda os tabuleiros anteriores;
+  - *p     , indica se é para imprimir coisas;
 */

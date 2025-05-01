@@ -72,21 +72,23 @@ Lê os passos anteriores de um tabuleiro guardado
 */
 
 
-int load(char *arg, TAB *jogo, stack *passos);
+int load(char *arg, TAB *jogo, stack *passos, int *p);
 /*
 Cria o caminho pra o ficheiro de onde vão ser lidos os tabuleiros
   - *arg   , string do argumento dado pelo usuário (nome do ficheiro a abrir);
   - *jogo  , tabuleiro do jogo;
   - *passos, stack com os tabuleiros anteriores;
+  - *p     , indica se é para imprimir coisas;
 
   - devolve um inteiro que indica se foi possivel dar load ao tabuleiro;
 */
 
 
-void save(char *arg, TAB *jogo, stack *passos);
+void save(char *arg, TAB *jogo, stack *passos, int *p);
 /*
 Guarda o tabuleiro do jogo atual em um dado ficheiro
   - *arg   , nome do ficheiro;
   - *jogo  , tabuleiro do jogo;
   - *passos, stack com os tabuleiros anteriores;
+  - *p     , indica se é para imprimir coisas;
 */

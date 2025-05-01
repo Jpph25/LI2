@@ -13,7 +13,7 @@ void t_cSpN(void) {
 
 
 void t_pBranco(void) {
-     int i;
+     int i, p = 0;
 
      TAB jogo;
      jogo.x = 2;
@@ -31,10 +31,10 @@ void t_pBranco(void) {
      criaTab(&jogo, tab);
 
      // Pinta a posição (1,0)        
-     pBranco("a1", &jogo);
+     pBranco("a1", &jogo, &p);
 
      // Pinta a posição (4,4) [invalida]
-     pBranco("e4", &jogo);
+     pBranco("e4", &jogo, &p);
 
 
      CU_ASSERT_EQUAL(jogo.tab[0][0].game, 'a');
@@ -48,7 +48,7 @@ void t_pBranco(void) {
 
 
 void t_risca(void) {
-     int i;
+     int i, p = 0;
 
      TAB jogo;
 
@@ -67,10 +67,10 @@ void t_risca(void) {
      criaTab(&jogo, tab);
 
      // Risca a posição (1,0)
-     risca("a1", &jogo);
+     risca("a1", &jogo, &p);
 
      // Risca a posição (4,4) [invalida]
-     risca("e4", &jogo);
+     risca("e4", &jogo, &p);
      
 
      CU_ASSERT_EQUAL(jogo.tab[0][0].game, 'a');
@@ -84,7 +84,7 @@ void t_risca(void) {
 
 
 void t_guarda_retorna(void) {
-     int i;
+     int i, p = 0;
 
      TAB jogo;
      jogo.x = 2;
@@ -128,17 +128,17 @@ void t_guarda_retorna(void) {
      jogo.tab[1][1].game = 'd';
 
      //Retorna ao 3º estado
-     retorna(&jogo, &passos);
+     retorna(&jogo, &passos, &p);
      CU_ASSERT_EQUAL(jogo.tab[0][0].game, 'A');
      CU_ASSERT_EQUAL(jogo.tab[1][1].game, '#');
 
      //Retorna ao 2º estado
-     retorna(&jogo, &passos);
+     retorna(&jogo, &passos, &p);
      CU_ASSERT_EQUAL(jogo.tab[0][0].game, 'A');
      CU_ASSERT_EQUAL(jogo.tab[1][1].game, 'd');
 
      //Retorna ao 1º estado
-     retorna(&jogo, &passos);
+     retorna(&jogo, &passos, &p);
      CU_ASSERT_EQUAL(jogo.tab[0][0].game, 'a');
      CU_ASSERT_EQUAL(jogo.tab[1][1].game, 'd');
 

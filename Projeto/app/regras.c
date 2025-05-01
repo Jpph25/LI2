@@ -122,38 +122,45 @@ void caminho(CP *pintadas, CP *visitadas, TAB *jogo, int *r, int *p) {
 }
 
 
-void rRiscadas(int x, int y, TAB *jogo, int *r, int *p) {
+void rRiscadas(int x, int y, TAB *jogo, CP *vrfcds, int *r, int *p) {
 
      if (y + 1 < jogo -> y && jogo -> tab[y + 1][x].game == '#') {  
          *r = 0;  
-         if (*p) printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada abaixo está riscada).\n", x, y); 
+         if (*p && !elem(x, y + 1, vrfcds)) 
+              printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada abaixo está riscada).\n", x, y); 
      }
 
      if (x + 1 < jogo -> x && jogo -> tab[y][x + 1].game == '#') {
          *r = 0;  
-         if (*p) printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada à direita está riscada).\n", x, y);
+         if (*p && !elem(x + 1, y, vrfcds)) 
+             printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada à direita está riscada).\n", x, y);
      }
 
      if (y - 1 >= 0 && jogo -> tab[y - 1][x].game == '#') { 
          *r = 0;  
-         if (*p) printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada acima está riscada).\n", x, y);
+         if (*p && !elem(x, y - 1, vrfcds))
+             printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada acima está riscada).\n", x, y);
      }
 
      if (x - 1 >= 0 && jogo -> tab[y][x - 1].game == '#') {
          *r = 0; 
-         if (*p) printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada à esquerda está riscada).\n", x, y);
+         if (*p && !elem(x - 1, y, vrfcds)) 
+             printf ("A coordenada (%d, %d) infringe a regra das riscadas (a coordenada à esquerda está riscada).\n", x, y);
      }
+
+     push(x, y, vrfcds);
 }
 
 
-void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p) {
+void rBrancas (int x, int y, char c, TAB *jogo, CP *vrfcds, int *r, int *p) {
      int i, v = 1;
     
      for (i = 1; v && y + i < jogo -> y; i++) {
           if(jogo -> tab[y + i][x].game == c) {
              v  = 0;
              *r = 0;
-             if (*p) printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na coluna).\n", x, y, c);
+             if (*p && !elem(x, y + i, vrfcds)) 
+                 printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na coluna).\n", x, y, c);
           }
      }
 
@@ -161,7 +168,8 @@ void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p) {
           if(jogo -> tab[y - i][x].game == c) {
              v  = 0;
              *r = 0;
-             if (*p) printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na coluna).\n", x, y, c);
+             if (*p && !elem(x, y - i, vrfcds)) 
+                 printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na coluna).\n", x, y, c);
           }
      }
 
@@ -171,7 +179,8 @@ void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p) {
           if(jogo -> tab[y][x + i].game == c) {
              v  = 0;
              *r = 0;
-             if (*p) printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na linha).\n", x, y, c);
+             if (*p  && !elem(x + i, y, vrfcds)) 
+                 printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na linha).\n", x, y, c);
           }
      }
 
@@ -179,23 +188,28 @@ void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p) {
           if(jogo -> tab[y][x - i].game == c) {
              v  = 0;
              *r = 0;
-             if (*p) printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na linha).\n", x, y, c);
+             if (*p  && !elem(x - i, y, vrfcds)) 
+                 printf("A coordenada (%d, %d) infringe a regra das brancas (existe outro %c na linha).\n", x, y, c);
           }
      }
+
+     push(x, y, vrfcds);
 }
 
 
 int verifica(TAB *jogo, int *p) {
     int i, j, r = 1, h = 0; 
     
+    CP vrfcds = {NULL, 0, 0};
+
     for (i = 0; i < jogo -> y; i++) {
          for (j = 0; j < jogo -> x; j++) {
               if (jogo -> tab[i][j].game == '#') { 
-                  rRiscadas(j, i, jogo, &r, p);
+                  rRiscadas(j, i, jogo, &vrfcds, &r, p);
                   h = 1;
               }
               if (jogo -> tab[i][j].game >= 'A' && jogo -> tab[i][j].game <= 'Z')
-                  rBrancas(j, i, jogo -> tab[i][j].game, jogo, &r, p);  
+                  rBrancas(j, i, jogo -> tab[i][j].game, jogo, &vrfcds, &r, p);  
         } 
     }
 
@@ -218,6 +232,7 @@ int verifica(TAB *jogo, int *p) {
 
     limpaL(&visitadas);
     limpaL(&pintadas);
+    limpaL(&vrfcds);
 
     return r;
 }

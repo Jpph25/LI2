@@ -157,8 +157,10 @@ void t_rRiscadas(void) {
 
      criaTab(&jogo, tab1);
 
+     CP vrfcds = {NULL, 0, 0};
+
      int r = 1, p = 0;
-     rRiscadas(0, 0, &jogo, &r, &p);
+     rRiscadas(0, 0, &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 0);
 
      char tab2[4] = {
@@ -169,7 +171,7 @@ void t_rRiscadas(void) {
      criaTab(&jogo, tab2);
      
      r = 1;
-     rRiscadas(0, 0, &jogo, &r, &p);
+     rRiscadas(0, 0, &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 0); 
      
      char tab3[4] = {
@@ -180,10 +182,12 @@ void t_rRiscadas(void) {
      criaTab(&jogo, tab3);
 
      r = 1;
-     rRiscadas(0, 0, &jogo, &r, &p);
+     rRiscadas(0, 0, &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 1);
 
+
      limpaT(&jogo);
+     limpaL(&vrfcds);
 }
 
 
@@ -205,8 +209,10 @@ void t_rBrancas(void) {
 
      criaTab(&jogo, tab1);
 
+     CP vrfcds = {NULL, 0, 0};
+
      int r = 1, p = 0;
-     rBrancas(0, 0, 'A', &jogo, &r, &p);
+     rBrancas(0, 0, 'A', &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 1);
 
      char tab2[4] = {
@@ -217,7 +223,7 @@ void t_rBrancas(void) {
      criaTab(&jogo, tab2);
      
      r = 1;
-     rBrancas(0, 0, 'A', &jogo, &r, &p);
+     rBrancas(0, 0, 'A', &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 0); 
      
      char tab3[4] = {
@@ -228,7 +234,7 @@ void t_rBrancas(void) {
      criaTab(&jogo, tab3);
 
      r = 1;
-     rBrancas(0, 0, 'A',&jogo, &r, &p);
+     rBrancas(0, 0, 'A',&jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 0);
 
      char tab4[4] = {
@@ -239,10 +245,11 @@ void t_rBrancas(void) {
      criaTab(&jogo, tab4);
 
      r = 1;
-     rBrancas(0, 0, 'A', &jogo, &r, &p);
+     rBrancas(0, 0, 'A', &jogo, &vrfcds, &r, &p);
      CU_ASSERT_EQUAL(r, 1);
 
      limpaT(&jogo);
+     limpaL(&vrfcds);
 }
 
 

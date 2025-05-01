@@ -63,7 +63,7 @@ void cmd_s(TAB *jogo) {
      int end = 1, l = 1;
      stack passos = {0, 0, NULL};
 
-     lecmd('s', "", &end, &l, jogo, &passos);
+     lecmd('s', "", &end, &l, jogo, &passos, 0);
 
      CU_ASSERT_EQUAL(end, 0);
 
@@ -113,14 +113,14 @@ void cmd_R(void) {
 
      stack passos = {0, 0, NULL};
 
-     lecmd('R', "", &end, &l, &jogo, &passos);
+     lecmd('R', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_PTR_NULL(passos.tabs);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
 
      criaTab(&res, tab2);
      l = 1;
 
-     lecmd('R', "", &end, &l, &jogo, &passos);
+     lecmd('R', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
      criaTab(&res, tab1);
      CU_ASSERT_EQUAL(tabIguais(&res, &passos.tabs[0]), 1);
@@ -174,18 +174,18 @@ void cmd_a_A(void) {
 
      stack passos = {0, 0, NULL};
 
-     lecmd('a', "", &end, &l, &jogo, &passos);
+     lecmd('a', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_PTR_NULL(passos.tabs);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
 
-     lecmd('A', "", &end, &l, &jogo, &passos);
+     lecmd('A', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_PTR_NULL(passos.tabs);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
 
      l = 1;
 
 
-     lecmd('a', "", &end, &l, &jogo, &passos);
+     lecmd('a', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_EQUAL(jogo.tab[0][1].game, '#');
      CU_ASSERT_EQUAL(jogo.tab[1][4].game, '#');
      CU_ASSERT_EQUAL(jogo.tab[4][1].game, '#');
@@ -193,7 +193,7 @@ void cmd_a_A(void) {
 
      criaTab(&res, tab2);
 
-     lecmd('A', "", &end, &l, &jogo, &passos);
+     lecmd('A', "", &end, &l, &jogo, &passos, 0);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
      CU_ASSERT_EQUAL(passos.tabs[1].tab[0][1].game, '#');
      CU_ASSERT_EQUAL(passos.tabs[1].tab[1][4].game, '#');
@@ -217,7 +217,7 @@ void cmd_l_g(TAB *jogo) {
 
      jogo -> tab[0][0].game = 'A';
 
-     lecmd('g', "teste", &end, &l, jogo, &passos);
+     lecmd('g', "teste", &end, &l, jogo, &passos, 0);
 
      FILE *f = fopen("Inputs/teste", "r");
      CU_ASSERT_PTR_NOT_NULL(f);
@@ -229,12 +229,12 @@ void cmd_l_g(TAB *jogo) {
 
      stack passost = {0, 0, NULL}; 
 
-     lecmd('l', "NULL", &end, &l, &jogot, &passost);
+     lecmd('l', "NULL", &end, &l, &jogot, &passost, 0);
 
      CU_ASSERT_PTR_NULL(jogot.tab);
      CU_ASSERT_PTR_NULL(passost.tabs);
 
-     lecmd('l', "teste", &end, &l, &jogot, &passost);
+     lecmd('l', "teste", &end, &l, &jogot, &passost, 0);
 
      CU_ASSERT_EQUAL(tabIguais(&jogot, jogo), 1);
      CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &passost.tabs[0]), 1);
@@ -264,33 +264,33 @@ void cmd_d(TAB *jogo) {
   cpyTab(&aux, jogo);
 
 
-  lecmd('r', "b1", &end, &l, jogo, &passos);
-  lecmd('r', "e4", &end, &l, jogo, &passos);
+  lecmd('r', "b1", &end, &l, jogo, &passos, 0);
+  lecmd('r', "e4", &end, &l, jogo, &passos, 0);
   
 
-  lecmd('d', "", &end, &l, jogo, &passos);
+  lecmd('d', "", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(jogo -> tab[1][1].game, 'e');
 
 
-  lecmd('d', "", &end, &l, jogo, &passos);
+  lecmd('d', "", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(tabIguais(&aux, jogo), 1);
 
 
-  lecmd('b', "b1", &end, &l, jogo, &passos);
-  lecmd('b', "c2", &end, &l, jogo, &passos);
+  lecmd('b', "b1", &end, &l, jogo, &passos, 0);
+  lecmd('b', "c2", &end, &l, jogo, &passos, 0);
 
 
-  lecmd('d', "", &end, &l, jogo, &passos);
+  lecmd('d', "", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(jogo -> tab[2][2].game, '#');
   CU_ASSERT_EQUAL(jogo -> tab[1][1].game, 'E');
 
 
-  lecmd('d', "", &end, &l, jogo, &passos);
+  lecmd('d', "", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(jogo -> tab[1][1].game, 'e');
 
 
   l = 0;
-  lecmd('d', "", &end, &l, jogo, &passos);
+  lecmd('d', "", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(tabIguais(&aux, jogo), 1);
 
 
@@ -315,7 +315,7 @@ void cmd_r(TAB *jogo) {
   cpyTab(&aux, jogo);
 
 
-  lecmd('r', "c2", &end, &l, jogo, &passos);
+  lecmd('r', "c2", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(jogo -> tab[2][2].game, '#');
   CU_ASSERT_EQUAL(jogo -> tab[2][2].orig, 'g');
   CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
@@ -333,14 +333,14 @@ void cmd_r(TAB *jogo) {
   cpyTab(&ant, jogo);
 
 
-  lecmd('r', "e4", &end, &l, jogo, &passos);
+  lecmd('r', "e4", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
   CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
 
 
   cpyTab(&ant, jogo);
 
-  lecmd('r', "c2", &end, &l, jogo, &passos);
+  lecmd('r', "c2", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
   CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
 
@@ -348,7 +348,7 @@ void cmd_r(TAB *jogo) {
   cpyTab(&ant, jogo);
 
   l = 0;
-  lecmd('r', "c2", &end, &l, jogo, &passos);
+  lecmd('r', "c2", &end, &l, jogo, &passos, 0);
   CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
 
 
@@ -374,7 +374,7 @@ void cmd_b(TAB *jogo) {
      cpyTab(&aux, jogo);
 
 
-     lecmd('b', "a0", &end, &l, jogo, &passos);
+     lecmd('b', "a0", &end, &l, jogo, &passos, 0);
      CU_ASSERT_EQUAL(jogo -> tab[0][0].game, 'A');
      CU_ASSERT_EQUAL(jogo -> tab[0][0].orig, 'a');
      CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
@@ -392,14 +392,14 @@ void cmd_b(TAB *jogo) {
      cpyTab(&ant, jogo);
 
 
-     lecmd('b', "e4", &end, &l, jogo, &passos);
+     lecmd('b', "e4", &end, &l, jogo, &passos, 0);
      CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
      CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
 
 
      cpyTab(&ant, jogo);
 
-     lecmd('b', "a0", &end, &l, jogo, &passos);
+     lecmd('b', "a0", &end, &l, jogo, &passos, 0);
      CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
      CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &aux), 1);
 
@@ -407,7 +407,7 @@ void cmd_b(TAB *jogo) {
      cpyTab(&ant, jogo);
 
      l = 0;
-     lecmd('b', "a1", &end, &l, jogo, &passos);
+     lecmd('b', "a1", &end, &l, jogo, &passos, 0);
      CU_ASSERT_EQUAL(tabIguais(&ant, jogo), 1);
 
 

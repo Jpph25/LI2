@@ -63,10 +63,11 @@ Percorre todas as casas de um tabuleiro
 */
 
 
-int resolve(TAB *jogo);
+int resolve(TAB *jogo, int *i);
 /*
 Resolve um dado tabuleiro 
   - *jogo, tabuleiro do jogo;
+  - *i   , indica se é para imprimir coisas;
 
   - retorna um inteiro que indica se houve alguma alteração no tabuleiro
     - 0, não houve alterações;

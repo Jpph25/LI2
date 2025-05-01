@@ -159,10 +159,10 @@ void percorre(TAB *jogo, int *r) {
 }
 
 
-int resolve(TAB *jogo) {
+int resolve(TAB *jogo, int *i) {
     int p = 0, r = 0;  
 
-    if (!verifica(jogo, &p)) printf("Tabuleiro atual invalido.\n\n");
+    if (!verifica(jogo, &p)) if (i) printf("Tabuleiro atual invalido.\n\n");
 
     percorre(jogo, &r); 
      

@@ -22,7 +22,7 @@ Apaga o ultimo passo(tabuleiro) guardado
 */
 
 
-void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos);
+void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos, int i);
 /*
   - cmd    , carater do comando passado pelo usoário;
   - *arg   , argumento passado pelo usoário;
@@ -30,6 +30,7 @@ void lecmd(char cmd, char *arg, int *end, int *l, TAB *jogo, stack *passos);
   - *l     , indica se o tabuleiro está iniciado;
   - *jogo  , tabuleiro do jogo;
   - *passos, guarda as jogadas do usuario;
+  - i      , indica se é para imprimir coisas;
 
 Lê os comandos usados pelo usuario:
   - b, pinta uma dada casa de branco;

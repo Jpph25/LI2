@@ -97,24 +97,27 @@ Verifica se existe o caminho entre todas as letras brancas
   - *p        , indica se é para imprimir algo;
 */
 
-void rRiscadas(int x, int y, TAB *jogo, int *r, int *p);
+
+void rRiscadas(int x, int y, TAB *jogo, CP *vrfcds, int *r, int *p);
 /*
 Verifica se a regra das riscadas é obdecida
-  - y    , coordenada da casa a ser verificada;
-  - x    , coordenada da casa a ser verificada;
-  - *jogo, tabuleiro do jogo;
-  - *r   , indica se o tabuleiro é válido;
-  - *p   , indica se é para imprimir algo;
+  - y      , coordenada da casa a ser verificada;
+  - x      , coordenada da casa a ser verificada;
+  - *jogo  , tabuleiro do jogo;
+  - *vrfcds, lista de coordenadas já verificadas;
+  - *r     , indica se o tabuleiro é válido;
+  - *p     , indica se é para imprimir algo;
 */
 
 
-void rBrancas (int x, int y, char c, TAB *jogo, int *r, int *p);
+void rBrancas (int x, int y, char c, TAB *jogo, CP *vrfcds, int *r, int *p);
 /*
 Verifica se a regra das riscadas é obdecida
   - y    , coordenada da casa a ser verificada;
   - x    , coordenada da casa a ser verificada;
   - c    , caracter da casa a ser verificada;
   - *jogo, tabuleiro do jogo;
+  - *vrfcds, lista de coordenadas já verificadas;
   - *r   , indica se o tabuleiro é válido;
   - *p   , indica se é para imprimir algo;
 */

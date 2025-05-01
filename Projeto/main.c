@@ -30,11 +30,11 @@ int main() {
             n = sscanf(input, " %c %s", &cmd, arg);
 
             if (n == 1 && (cmd == 's' || cmd == 'd' || cmd == 'a' || cmd == 'A' || cmd == 'v' || cmd == 'R')) {
-                lecmd(cmd, "", &end, &l, &jogo, &passos);
+                lecmd(cmd, "", &end, &l, &jogo, &passos, 1);
             } else {
 
                 if (n == 2 && (cmd == 'l' || cmd == 'g' || cmd == 'b' || cmd == 'r') ) {
-                    lecmd(cmd, arg, &end, &l, &jogo, &passos);
+                    lecmd(cmd, arg, &end, &l, &jogo, &passos, 1);
                 } else {
                     printf("Comando inválido\n\n");
                 }

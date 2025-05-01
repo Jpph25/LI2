@@ -22,15 +22,15 @@ int cSpN(char *num, int t) {
 }
 
 
-void pBranco(char *arg, TAB *jogo) {
+void pBranco(char *arg, TAB *jogo, int *p) {
      int x = arg[0] - 'a';
      int y = cSpN(arg + 1, strlen(arg + 1) - 1);
      
      if (x < 0 || x >= jogo -> x || y < 0 || y >= jogo -> y) {
-         printf("Erro: Coordenadas invalidas\n\n");
+         if (*p) printf("Erro: Coordenadas invalidas\n\n");
      } else { 
          if (jogo -> tab[y][x].game >= 'A' && jogo -> tab[y][x].game<= 'Z') {
-             printf("Coordenada já pintada\n\n");
+             if (*p) printf("Coordenada já pintada\n\n");
          } else {
              jogo -> tab[y][x].game = jogo -> tab[y][x].orig - 32; 
          }
@@ -38,15 +38,15 @@ void pBranco(char *arg, TAB *jogo) {
 }
 
 
-void risca(char *arg, TAB *jogo) {
+void risca(char *arg, TAB *jogo, int *p) {
     int x = arg[0] - 'a';
     int y = cSpN(arg + 1, strlen(arg + 1) - 1);
     
     if (x < 0 || x >= jogo -> x || y < 0 || y >= jogo -> y) {
-        printf("Erro: Coordenadas invalidas\n\n");
+        if (*p) printf("Erro: Coordenadas invalidas\n\n");
     } else { 
         if (jogo -> tab[y][x].game == '#') {
-            printf("Coordenada já riscada\n\n");
+            if (*p) printf("Coordenada já riscada\n\n");
         } else {
             jogo -> tab[y][x].game = '#'; 
         }
@@ -79,11 +79,11 @@ void guarda(TAB *jogo, stack *passos) {
 }
 
 
-void retorna(TAB *jogo, stack *passos) {
+void retorna(TAB *jogo, stack *passos, int *p) {
      int i = passos -> sp - 1;
 
      if (passos -> sp == 0) {
-         printf("Não é possível retroceder.\n\n");
+         if (*p) printf("Não é possível retroceder.\n\n");
      } else {
 
          jogo -> x = passos -> tabs[i].x;

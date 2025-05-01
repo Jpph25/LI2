@@ -102,7 +102,7 @@ void lePassos(int x, int y, stack *passos, FILE *file) {
 }
 
 
-int load(char *arg, TAB *jogo, stack *passos) {
+int load(char *arg, TAB *jogo, stack *passos, int *p) {
     int r = 1;
     char dir[100] = "Inputs/"; 
     strcat(dir, arg);
@@ -111,7 +111,7 @@ int load(char *arg, TAB *jogo, stack *passos) {
 
     FILE *file = fopen(dir, "r"); 
     if (file == NULL) {
-        printf("ERRO: Ficheiro ´%s´ não encontrado\n\n", arg);
+        if (*p) printf("ERRO: Ficheiro ´%s´ não encontrado\n\n", arg);
         r = 0;
     } else {
         leJogo(jogo, file);
@@ -135,14 +135,14 @@ int load(char *arg, TAB *jogo, stack *passos) {
 }
 
 
-void save(char *arg, TAB *jogo, stack *passos) {
+void save(char *arg, TAB *jogo, stack *passos, int *p) {
     int i, j, k;
     char dir[100] = "Inputs/";
     strcat(dir, arg);
 
     FILE *file = fopen(dir, "w");
     if (file == NULL) {
-        printf("ERRO: Não foi possível gravar no ficheiro ´%s´\n\n", arg);
+        if (*p) printf("ERRO: Não foi possível gravar no ficheiro ´%s´\n\n", arg);
     } else {
         fprintf(file, "%d %d\n", jogo->y, jogo->x);
 
@@ -175,6 +175,6 @@ void save(char *arg, TAB *jogo, stack *passos) {
         }
 
         fclose(file);
-        printf("Tabuleiro gravado em ´%s´ com sucesso\n\n", arg);
+        if (*p) printf("Tabuleiro gravado em ´%s´ com sucesso\n\n", arg);
     }
 }

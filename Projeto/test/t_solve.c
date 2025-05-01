@@ -167,7 +167,7 @@ void t_minTmai(void) {
 
 
 void t_resolve(void) {
-     int i;
+     int i, p = 0;
      TAB jogo;
 
      jogo.x = 5;
@@ -206,10 +206,10 @@ void t_resolve(void) {
 
      criaTab(&res, tab2);
 
-     CU_ASSERT_EQUAL(resolve(&jogo), 1);
+     CU_ASSERT_EQUAL(resolve(&jogo, &p), 1);
      CU_ASSERT_EQUAL(tabIguais(&res, &jogo), 1);
 
-     CU_ASSERT_EQUAL(resolve(&jogo), 0);
+     CU_ASSERT_EQUAL(resolve(&jogo, &p), 0);
 
      limpaT(&jogo);
      limpaT(&res);

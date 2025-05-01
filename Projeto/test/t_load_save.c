@@ -70,12 +70,13 @@ void t_le_Jogo_Tab(void) {
 
 
 void t_l_s(TAB *jogo) {
+     int p = 0;
      stack passos = {0, 0, NULL};
      guarda(jogo, &passos);
 
      jogo -> tab[0][0].game = 'A';
 
-     save("teste", jogo, &passos);
+     save("teste", jogo, &passos, &p);
 
 
      FILE *f = fopen("Inputs/teste", "r");
@@ -88,12 +89,12 @@ void t_l_s(TAB *jogo) {
 
      stack passost = {0, 0, NULL}; 
 
-     load("NULL", &jogot, &passost);
+     load("NULL", &jogot, &passost, &p);
 
      CU_ASSERT_PTR_NULL(jogot.tab);
      CU_ASSERT_PTR_NULL(passost.tabs);
 
-     load("teste", &jogot, &passost);
+     load("teste", &jogot, &passost, &p);
 
      CU_ASSERT_EQUAL(tabIguais(&jogot, jogo), 1);
      CU_ASSERT_EQUAL(tabIguais(&passos.tabs[0], &passost.tabs[0]), 1);
